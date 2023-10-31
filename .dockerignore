@@ -1,5 +1,5 @@
-config.toml
-arduino
-doc
-icons
-compose.yml
+*
+!src
+!pyproject.toml
+!requirements*
+!README.md

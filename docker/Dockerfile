@@ -1,6 +1,7 @@
 FROM python:3.11-slim
 
-COPY ../. /src
+COPY ../. /src/
+
 WORKDIR /src
 
 ARG UID=1000
@@ -11,4 +12,5 @@ RUN groupadd -g $GID dev &&  \
     pip install -r requirements.lock --no-cache-dir
 
 USER dev
-CMD ["python", "main.py"]
+CMD ["python", "./src/main.py"]
+
