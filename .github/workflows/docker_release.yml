@@ -31,7 +31,7 @@ jobs:
 
     - name: Get Tag Name
       id: get-tag-name
-      run: echo ::set-output name=tag::${{ github.ref_tags }}
+      run: echo "tag=${{ github.ref_tags }}" >> $GITHUB_OUTPUT
 
     - name: Print Tag Name
       run: |
