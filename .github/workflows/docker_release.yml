@@ -2,8 +2,8 @@ name: Docker Release Build
 
 on:
   push:
-    branches:
-      - master
+    branches-ignore:
+      - '**'
     tags:
       - "v*"
 
