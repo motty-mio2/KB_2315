@@ -35,7 +35,9 @@ jobs:
 
     - name: Print Tag Name
       run: |
-        echo "Tag Name: ${{ steps.get-tag-name.outputs.tag }}"
+        echo "Tag Name: ${{ github.ref_tags }}"
+        echo "Tag Name: $GITHUB_REF_NAME"
+        echo "Tag name from github.ref_name: ${{  github.ref_name }}"
 
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v3
