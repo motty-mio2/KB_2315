@@ -46,4 +46,4 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY }}/base:test
-          # ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_version.outputs }}
+            ${{ env.REGISTRY }}/base:${{ steps.get_version.outputs }}
