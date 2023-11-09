@@ -19,7 +19,9 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Set up Python 3.11
         uses: actions/setup-python@v2
         with:
@@ -29,20 +31,20 @@ jobs:
         run: |
           python ./get_var.py
 
-      - name: Log in to the Container registry
-        uses: docker/login-action
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Log in to the Container registry
+      #   uses: docker/login-action
+      #   with:
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./deploy/Dockerfile_base
-          target: ${{ env.REPOSITORY }}
-          push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
-          # ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_version.outputs }}
+      # - name: Build image
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: .
+      #     file: ./deploy/Dockerfile_base
+      #     target: ${{ env.REPOSITORY }}
+      #     push: true
+      #     tags: |
+      #       ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
+      #     # ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_version.outputs }}
