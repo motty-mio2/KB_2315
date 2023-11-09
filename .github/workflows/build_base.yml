@@ -31,20 +31,19 @@ jobs:
         run: |
           python ./get_ver.py
 
-      # - name: Log in to the Container registry
-      #   uses: docker/login-action
-      #   with:
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to the Container registry
+        uses: docker/login-action
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Build image
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: .
-      #     file: ./deploy/Dockerfile_base
-      #     target: ${{ env.REPOSITORY }}
-      #     push: true
-      #     tags: |
-      #       ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
-      #     # ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_version.outputs }}
+      - name: Build image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./deploy/Dockerfile_base
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/base:test
+          # ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_version.outputs }}
