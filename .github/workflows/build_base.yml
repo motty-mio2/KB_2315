@@ -39,11 +39,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./deploy/Dockerfile_base
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ env.REGISTRY }}/base:test
-            ${{ env.REGISTRY }}/base:${{ steps.get_version.outputs }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/base:test
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/base:${{ steps.get_version.outputs }}
