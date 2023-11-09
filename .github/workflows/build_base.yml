@@ -30,11 +30,13 @@ jobs:
       - name: get_version
         id: get_version
         run: |
-          python ./get_ver.py >> $GITHUB_OUTPUT
+          file_path="pyproject.toml"
+          version=$(awk -F ' = ' '$1=="version" {gsub(/"/, "", $2); print $2}' "$file_path")
+          echo "VERSION=$version"
 
       - name: show version
         run: |
-          echo ${{ steps.get_version.outputs }}
+          echo ${{ steps.get_version.outputs.VERSION }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
