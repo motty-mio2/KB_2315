@@ -1,7 +1,6 @@
 name: Docker Base Build
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master

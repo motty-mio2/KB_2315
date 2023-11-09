@@ -3,9 +3,9 @@ name: Docker Release Build
 on:
   push:
     branches:
-    - "master"
+      - master
     tags:
-    - "v*"
+      - "v*"
 
 env:
   REGISTRY: ghcr.io
