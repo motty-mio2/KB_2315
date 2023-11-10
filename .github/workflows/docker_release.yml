@@ -60,6 +60,12 @@ jobs:
           ${{ env.REGISTRY }}/motty-mio2/kb_2315/base:latest
           ${{ env.REGISTRY }}/motty-mio2/kb_2315/base:${{ steps.build_version.outputs.VERSION }}
 
+    - name: replace base version
+      run: |
+        sed -i -e "s/master/${{ steps.build_version.outputs.VERSION }}/" ./deploy/Dockerfile_alembic
+        sed -i -e "s/master/${{ steps.build_version.outputs.VERSION }}/" ./deploy/Dockerfile_app
+        sed -i -e "s/master/${{ steps.build_version.outputs.VERSION }}/" ./deploy/Dockerfile_graph
+
     - name: Build Alembic image
       uses: docker/build-push-action@v5
       with:
